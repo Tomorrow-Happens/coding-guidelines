@@ -510,8 +510,20 @@ Write them on the same line.
 Essential extensions:
 
 1. [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Amazingly helpful extension to show tailwind classes in intellisense. Follow install instructions.
-2. Prettier - Code formatter
-3. PostCSS syntax
+2. ESLint
+3. EditorConfig for VS Code
+4. PostCSS syntax
+
+VS Code Settings for `settings.json` to enable ESLint on Format:
+```
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    }
+```
 
 Optional extensions:
 
