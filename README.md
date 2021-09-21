@@ -44,9 +44,14 @@ styles
     │   footer.css
 ```
 
-# Files
+# JS
+For all JavaScript guidelines, we follow the (JavaScript Standard Style)[https://github.com/standard/standard]
 
-## styles.css
+# CSS
+
+## Files
+
+### styles.css
 
 ```
 @import "fonts";
@@ -57,7 +62,7 @@ styles
 @import "components/footer";
 ```
 
-## fonts.css
+### fonts.css
 
 Use this to declare any font faces, e.g.
 
@@ -72,7 +77,7 @@ Use this to declare any font faces, e.g.
 }
 ```
 
-## scaffolding.css
+### scaffolding.css
 
 Use this to import Tailwind base and utility helpers, then basic setup;
 
@@ -90,7 +95,7 @@ html {
 }
 ```
 
-## helpers.css
+### helpers.css
 
 Useful in creating helper classes that are:
 
@@ -119,7 +124,7 @@ This class might be extended by other components:
 
 ```
 
-## typography.css
+### typography.css
 
 Used to create type classes that are extended by other components, at the end these are given to default h1, h2, h3 etc.
 
@@ -144,7 +149,7 @@ These classes can also be extended by components later,
 }
 ```
 
-## forms.css
+### forms.css
 
 Used to style forms and their inputs.
 
@@ -172,7 +177,7 @@ textarea {
 }
 ```
 
-## buttons.css
+### buttons.css
 
 Used to create buttons and links.
 
@@ -202,7 +207,7 @@ Used to create buttons and links.
 }
 ```
 
-# Code Guidelines
+## Code Guidelines
 
 1. [Refactor Components](#1-refactor-components)
 2. [Keep Layout Classes Inline](#2-keep-layout-classes-inline)
@@ -211,7 +216,7 @@ Used to create buttons and links.
 5. [Nest CSS For Readability](#5-nest-css-for-readability)
 6. [Keep `apply`'s On New Lines](#6-keep-applys-on-new-lines)
 
-## 1: Refactor Components
+### 1: Refactor Components
 
 If you are creating something which can be thought of as an element, e.g. a gallery, it should be refactored into a component file under `components/{name}.css`.
 
@@ -285,7 +290,7 @@ When creating custom components, try and stick to the [BEM Syntax](http://getbem
 
 Sometimes, however, I prefer to keep elements like `p` and `a` free from additional classes.
 
-## 2: Keep Layout Classes Inline
+### 2: Keep Layout Classes Inline
 
 Try to keep layout HTML as inline styles or else components can be polluted.
 
@@ -313,7 +318,7 @@ component.css
 }
 ```
 
-## 3: Extend Tailwind Functionality
+### 3: Extend Tailwind Functionality
 
 When deciding what code to use for a particular item, always try and use as many tailwind helper functions and classes as possible.
 
@@ -402,7 +407,7 @@ Create or use custom media queries in code
 }
 ```
 
-## 4: Always use `rem` instead of `px`
+### 4: Always use `rem` instead of `px`
 
 Styling should always be in `rem` values as they are relative to the body font size, which changes based on the screen width.
 
@@ -435,7 +440,7 @@ Use `px` values.
 }
 ```
 
-## 5: Nest CSS For Readability
+### 5: Nest CSS For Readability
 
 **✅ DO:**
 Nest all styles, including media queries.
@@ -478,7 +483,7 @@ Separate classes out.
 }
 ```
 
-## 6: Keep `apply`'s On New Lines
+### 6: Keep `apply`'s On New Lines
 
 This just helps readability of components, especially when lots of styles.
 
