@@ -1,22 +1,26 @@
 # Contents
 - [Background](#background)
 - [Project Structure](#project-structure)
-- [Files](#files)
-  - [styles.css](#stylescss)
-  - [fonts.css](#fontscss)
-  - [scaffolding.css](#scaffoldingcss)
-  - [helpers.css](#helperscss)
-  - [typography.css](#typographycss)
-  - [forms.css](#formscss)
-  - [buttons.css](#buttonscss)
-- [Code Guidelines](#code-guidelines)
-  1. [Refactor Components](#1-refactor-components)
-  2. [Keep Layout Classes Inline](#2-keep-layout-classes-inline)
-  3. [Extend Tailwind Functionality](#3-extend-tailwind-functionality)
-  4. [Always use `rem` instead of `px`](#4-always-use-rem-instead-of-px)
-  5. [Nest CSS For Readability](#5-nest-css-for-readability)
-  6. [Keep `apply`'s On New Lines](#6-keep-applys-on-new-lines)
+- [JavaScript](#JavaScript)
+  - [JavaScript Standard Style](https://github.com/standard/standard)
+- [CSS](#CSS)
+  - [Files](#files)
+    - [styles.css](#stylescss)
+    - [fonts.css](#fontscss)
+    - [scaffolding.css](#scaffoldingcss)
+    - [helpers.css](#helperscss)
+    - [typography.css](#typographycss)
+    - [forms.css](#formscss)
+    - [buttons.css](#buttonscss)
+  - [Code Guidelines](#code-guidelines)
+    1. [Refactor Components](#1-refactor-components)
+    2. [Keep Layout Classes Inline](#2-keep-layout-classes-inline)
+    3. [Extend Tailwind Functionality](#3-extend-tailwind-functionality)
+    4. [Always use `rem` instead of `px`](#4-always-use-rem-instead-of-px)
+    5. [Nest CSS For Readability](#5-nest-css-for-readability)
+    6. [Keep `apply`'s On New Lines](#6-keep-applys-on-new-lines)
 - [Visual Studio Code Extensions](#visual-studio-code-extensions)
+- [VS Code Settings](#vs-code-settings)
 
 # Background
 
@@ -44,10 +48,12 @@ styles
     │   footer.css
 ```
 
-# JS
-For all JavaScript guidelines, we follow the (JavaScript Standard Style)[https://github.com/standard/standard]
+# JavaScript
+For all JavaScript guidelines, we follow the [JavaScript Standard Style](https://github.com/standard/standard).
 
 # CSS
+
+We have created our own CSS coding guideline system as seen below. We are hoping to achieve simplicity, readability and extendability.
 
 ## Files
 
@@ -515,12 +521,52 @@ Write them on the same line.
 Essential extensions:
 
 1. [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Amazingly helpful extension to show tailwind classes in intellisense. Follow install instructions.
-2. ESLint
-3. EditorConfig for VS Code
-4. PostCSS syntax
+2. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+3. [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+4. [GLSL Lint](https://marketplace.visualstudio.com/items?itemName=CADENAS.vscode-glsllint)
+5. [HTML Snippets](https://marketplace.visualstudio.com/items?itemName=abusaidm.html-snippets)
+6. [PostCSS syntax](https://marketplace.visualstudio.com/items?itemName=ricard.PostCSS)
+7. [pug (jade) formatter](https://marketplace.visualstudio.com/items?itemName=ducfilan.pug-formatter)
+8. [Twig](https://marketplace.visualstudio.com/items?itemName=whatwedo.twig)
+9. [Twig Language](https://marketplace.visualstudio.com/items?itemName=mblode.twig-language)
+10. [Twig Language 2](https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2)
+11. [WebGL GLSL Editor](https://marketplace.visualstudio.com/items?itemName=raczzalan.webgl-glsl-editor)
+12. [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
+13. [Shader languages support for VS Code](https://marketplace.visualstudio.com/items?itemName=slevesque.shader)
 
-VS Code Settings for `settings.json` to enable ESLint on Format:
+# VS Code Settings
+VS Code Settings for `settings.json`:
 ```
+{
+    "editor.tabSize": 2,
+    "files.associations": {
+        "*.css": "postcss",
+        "*.html": "twig"
+    },
+    "emmet.includeLanguages": {
+        "postcss": "css",
+        "javascript": "javascriptreact",
+        "twig": "html"
+    },
+    "emmet.syntaxProfiles": {
+        "postcss": "css"
+    },
+    "emmet.excludeLanguages": [
+        "markdown"
+    ],
+    "liveServer.settings.root": "/dist",
+    "[twig]": {
+        "editor.defaultFormatter": "mblode.twig-language-2"
+    },
+    "css.validate": false,
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "tailwindCSS.includeLanguages": {
+        "plaintext": "html"
+    },
+    "tailwindCSS.emmetCompletions": true,
+    "window.zoomLevel": -1,
     "eslint.format.enable": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
@@ -528,8 +574,5 @@ VS Code Settings for `settings.json` to enable ESLint on Format:
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     }
+}
 ```
-
-Optional extensions:
-
-1. Color Highlight
