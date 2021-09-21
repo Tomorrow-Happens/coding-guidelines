@@ -28,9 +28,7 @@
 
 We designed these code guidelines to help us develop better front-end code.
 
-We believe that by following these guidelines you will not only write better HTML/CSS, but enjoy the process much more.
-
-You don't like living in a dirty house, so of course you don't enjoy coding messy HTML/CSS.
+We believe that by following these guidelines you will not only write better code, but enjoy the process much more.
 
 # Project Structure
 
