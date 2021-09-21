@@ -3,8 +3,17 @@
 - [Project Structure](#project-structure)
 - [JavaScript](#JavaScript)
   - [JavaScript Standard Style](https://github.com/standard/standard)
+  - [JS File Structure](#js-file-structure)
+    - [app/index.js](#appindexjs)
+    - [app/service-worker.js](#appservice-workerjs)
+    - [animations/](#animations)
+    - [classes/](#classes)
+    - [components/](#components)
+    - [pages/](#pages)
+    - [shaders/](#shaders)
+    - [utils/](#utils)
 - [CSS](#CSS)
-  - [Files](#files)
+  - [CSS File Structure](#css-file-structure)
     - [styles.css](#stylescss)
     - [fonts.css](#fontscss)
     - [scaffolding.css](#scaffoldingcss)
@@ -30,9 +39,231 @@ We designed these code guidelines to help us develop better front-end code.
 
 We believe that by following these guidelines you will not only write better code, but enjoy the process much more.
 
-# Project Structure
 
-1. Styles should be broken up into individual styles for understandability
+# JavaScript
+For all JavaScript guidelines, we follow the [JavaScript Standard Style](https://github.com/standard/standard).
+
+## JS File Structure
+
+```
+app
+│   index.js
+|   service-worker.jp
+│
+└───animations
+    │   Paragraph.js
+└───classes
+    │   Animation.js
+└───components
+    │   Menu.js
+└───pages
+    │   index.js
+    └───Generic
+        │   index.js
+└───shaders
+    │   fragment.glsl
+    │   vertex.glsl
+└───utils
+    │   math.js
+    |   ...
+```
+
+### app/index.js
+
+Main entry file for the application. Creates pages, manages routes, final point for all events to bubble up to.
+
+### app/service-worker.js
+
+Service Worker code here.
+
+### animations/
+
+Used to create animation classes that handle animating in, out when in viewport.
+
+E.g.
+
+```
+import each from 'lodash/each'
+
+import Animation from './classes/Animation'
+
+import { calculate, split } from './utils/text'
+
+export default class extends Animation {
+  constructor ({ element }) {
+    const lines = []
+    const paragraphs = element.querySelectorAll('h1, h2, p')
+
+    if (paragraphs.length !== 0) {
+      each(paragraphs, element => {
+        split({ element })
+        split({ element })
+
+        lines.push(...element.querySelectorAll('span span'))
+      })
+    } else {
+      split({ element })
+      split({ element })
+
+      lines.push(...element.querySelectorAll('span span'))
+    }
+
+    super({
+      element,
+      elements: {
+        lines
+      }
+    })
+
+    this.onResize()
+
+    if ('IntersectionObserver' in window) {
+      this.animateOut()
+    }
+  }
+
+  animateIn () {
+    super.animateIn()
+
+    each(this.lines, (line, lineIndex) => {
+      each(line, word => {
+        word.style.transition = `transform 1.5s ${0.5 + lineIndex * 0.1}s ease`
+        word.style[this.transformPrefix] = 'translateY(0)'
+      })
+    })
+  }
+
+  animateOut () {
+    super.animateOut()
+
+    each(this.lines, line => {
+      each(line, word => {
+        word.style[this.transformPrefix] = 'translateY(100%)'
+      })
+    })
+  }
+
+  onResize () {
+    this.lines = calculate(this.elements.lines)
+  }
+}
+
+```
+
+### classes/
+Main classes used for the app.
+
+### components/
+Used to create re-usable components. Most often used for all functionality. Components should manage their own state and bind/unbind events.
+
+E.g.
+
+```
+import Component from '../classes/Component'
+
+export default class extends Component {
+  constructor ({ element, elements }) {
+    super({
+      classes: {},
+      element: element,
+      elements: elements
+    })
+
+    this.isOpen = false
+    this.isHidden = false
+    this.isAnimating = false
+
+    this.create()
+  }
+
+  create () {}
+
+  reveal () {
+    if (!this.isHidden) {
+      return
+    }
+    this.isAnimating = true
+    this.isHidden = false
+    this.isAnimating = false
+  }
+
+  hide () {
+    if (this.isHidden) {
+      return
+    }
+    this.isAnimating = true
+    this.isHidden = true
+    this.isAnimating = false
+  }
+
+  openMenu () {
+    if (this.isAnimating) {
+      return
+    }
+    this.isAnimating = true
+    this.isOpen = true
+    this.isAnimating = false
+  }
+
+  closeMenu () {
+    if (this.isAnimating) {
+      return
+    }
+    this.isAnimating = true
+    this.isOpen = true
+    this.isAnimating = false
+  }
+
+  onResize () {
+
+  }
+}
+
+```
+
+### pages/
+Pages can be created under folders, e.g. `Generic/index.js`
+
+It is often helpful to create code for specific pages that is not used for the whole site.
+
+When code is shared across all sites, I simply use the generic page.
+
+All pages need to be added to the map in `app/index.js`:
+```
+this.pages = new Map()
+this.pages.set('generic', new Generic())
+```
+
+By default, we use the `data-template` property on the `.page__content` to load in:
+
+```
+<div class="page__content" data-template="generic">
+  ...
+</div>
+```
+
+Each custom page type can also have unique `show()` and `hide()` methods.
+
+### shaders/
+Useful to keep all shader code.
+
+### utils/
+Useful for any helpful utility code, e.g. `math.js` contains functions like:
+
+```
+export function random (min, max) {
+  return GSAP.utils.random(min, max)
+}
+```
+
+
+# CSS
+
+We have created our own CSS coding guideline system as seen below. We are hoping to achieve simplicity, readability and extendability.
+
+## CSS File Structure
+
+Styles should be broken up into individual styles for understandability
 
 ```
 styles
@@ -45,15 +276,6 @@ styles
     │   header.css
     │   footer.css
 ```
-
-# JavaScript
-For all JavaScript guidelines, we follow the [JavaScript Standard Style](https://github.com/standard/standard).
-
-# CSS
-
-We have created our own CSS coding guideline system as seen below. We are hoping to achieve simplicity, readability and extendability.
-
-## Files
 
 ### styles.css
 
